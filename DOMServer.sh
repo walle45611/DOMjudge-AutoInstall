@@ -1,4 +1,26 @@
 #!/bin/bash
+#
+# DOMjudge 安裝腳本
+#
+# 這個腳本會在 Ubuntu 上安裝並配置 DOMjudge 競賽系統，包括 MariaDB、Apache 和 PHP。
+# 如果傳入 "ssl" 作為第一個參數，會同時安裝 SSL 並配置 HTTPS 支援。
+#
+# 用法：
+#   ./install_domjudge.sh [ssl] <MariaDB root 密碼> [<SSL 證書> <SSL 私鑰>]
+#
+# 參數：
+#   ssl                 （可選）啟用 SSL 安裝和配置
+#   <MariaDB root 密碼>  （必須）為 MariaDB 的 root 使用者設定密碼
+#   <SSL 證書>          （可選）當啟用 SSL 時，提供的 SSL 證書檔案路徑
+#   <SSL 私鑰>          （可選）當啟用 SSL 時，提供的 SSL 私鑰檔案路徑
+#
+# 作者：
+#   Ho,Kuo-Wei
+#   Campion (Supervisor)
+#
+# 版本：
+#   1.0.0 - 初版
+#
 
 # 預設為不使用 SSL
 USE_SSL=false
