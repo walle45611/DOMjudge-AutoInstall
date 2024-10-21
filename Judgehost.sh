@@ -17,7 +17,7 @@ FLAG_FILE="/opt/domjudge/judgehost/install_flag"
 # 檢查命令行參數
 new_api_url=${1:-"http://localhost/domjudge/api"}
 new_user=${2:-"judgehost"}
-new_password=${3:-""}
+new_password=${3:-"lPtXd3VkjNdsSCnME6e0UzEZbjSpEyFi"}
 
 # 如果 FLAG_FILE 不存在，則運行第一次安裝步驟
 if [ ! -f "$FLAG_FILE" ]; then
@@ -67,6 +67,9 @@ if [ ! -f "$FLAG_FILE" ]; then
 
   # 創建標誌文件，表示已完成第一部分
   sudo touch "$FLAG_FILE"
+
+  # 設置 cron 任務來在重啟時繼續腳本
+  echo "@reboot root /bin/bash /opt/domjudge/judgehost/Judgehost.sh \"$new_api_url\" \"$new_user\" \"$new_password\"" | sudo tee -a /etc/crontab > /dev/null
 
   # 重新啟動系統
   echo -e "\e[31mRebooting the system to apply changes...\e[0m"
@@ -137,6 +140,9 @@ EOL
 
   # 刪除標誌文件，表示安裝已完成
   sudo rm "$FLAG_FILE"
+
+  # 刪除 cron 任務
+  sudo sed -i "/Judgehost.sh/d" /etc/crontab
 
   # 安裝完成訊息
   echo -e "\e[31mJudgehost installation completed!\e[0m"
