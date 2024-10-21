@@ -69,7 +69,7 @@ After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=/bin/bash $HOME/Judgehost.sh continue
+ExecStart=/bin/bash $HOME/DOMjudge-AutoInstall/Judgehost.sh continue
 User=root
 
 [Install]
