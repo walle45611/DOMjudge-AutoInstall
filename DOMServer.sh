@@ -34,11 +34,11 @@ function print_separator {
 if [[ "$1" == "ssl" ]]; then
     USE_SSL=true
     echo -e "\e[36mSSL installation and configuration enabled.\e[0m"
-    shift  
+    shift
 fi
 
 # 檢查 MariaDB root 密碼是否傳入
-if [ -z "$1" ];then
+if [ -z "$1" ]; then
     echo -e "\e[31mMariaDB root password not provided.\e[0m"
     echo -e "\e[33mUsage: $0 [ssl] <MariaDB root password> [<SSL certificate> <SSL key>]\e[0m"
     exit 1
@@ -60,7 +60,10 @@ echo -e "\e[36mEnsuring sudo privileges...\e[0m"
 sudo -v
 
 # 設定 sudo 保持權限
-while true; do sudo -v; sleep 60; done &
+while true; do
+    sudo -v
+    sleep 60
+done &
 
 # 開始安裝，並顯示分隔線
 print_separator

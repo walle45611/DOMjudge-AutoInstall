@@ -31,7 +31,7 @@ fi
 
 # 分隔線顯示函數
 function print_separator {
-    echo -e "\e[33m========================================\e[0m"
+  echo -e "\e[33m========================================\e[0m"
 }
 
 # 安裝狀態標誌檔案
@@ -54,8 +54,8 @@ if [ ! -f "$FLAG_FILE" ]; then
   echo -e "\e[36mUpdating package lists and installing required packages...\e[0m"
   sudo apt-get update
   sudo apt-get install -y make pkg-config debootstrap libcgroup-dev \
-      php-cli php-curl php-json php-xml php-zip lsof procps gcc g++ \
-      openjdk-8-jre-headless openjdk-8-jdk ghc fp-compiler libjsoncpp-dev build-essential
+    php-cli php-curl php-json php-xml php-zip lsof procps gcc g++ \
+    openjdk-8-jre-headless openjdk-8-jdk ghc fp-compiler libjsoncpp-dev build-essential
   print_separator
 
   # 下載並解壓 DOMjudge
@@ -91,9 +91,9 @@ if [ ! -f "$FLAG_FILE" ]; then
   print_separator
 
   # 配置 Rest API 密鑰
-  echo "# Randomly generated on host $(hostname), $(date)" | sudo tee "$SECRET_FILE" > /dev/null
-  echo "# Format: '<ID> <API url> <user> <password>'" | sudo tee -a "$SECRET_FILE" > /dev/null
-  echo "default $new_api_url $new_user $new_password" | sudo tee -a "$SECRET_FILE" > /dev/null
+  echo "# Randomly generated on host $(hostname), $(date)" | sudo tee "$SECRET_FILE" >/dev/null
+  echo "# Format: '<ID> <API url> <user> <password>'" | sudo tee -a "$SECRET_FILE" >/dev/null
+  echo "default $new_api_url $new_user $new_password" | sudo tee -a "$SECRET_FILE" >/dev/null
 
   # 設置安裝標誌檔案
   sudo touch "$FLAG_FILE"
@@ -119,7 +119,7 @@ EOL"
 
   # 創建 judgedaemon 的 systemd 服務
   echo -e "\e[36mCreating judgedaemon systemd service...\e[0m"
-  cat <<EOL | sudo tee /etc/systemd/system/judgedaemon.service > /dev/null
+  cat <<EOL | sudo tee /etc/systemd/system/judgedaemon.service >/dev/null
 [Unit]
 Description=DOMjudge Judgedaemon Service
 After=network.target
